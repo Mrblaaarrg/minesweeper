@@ -25,6 +25,8 @@ class Board
 
     attr_accessor :grid
 
+    
+
     def render
         header = "  " + (0...@grid.size).to_a.join(" ")
         counter_text = "Bombs remaining: #{@bombs_left}"
