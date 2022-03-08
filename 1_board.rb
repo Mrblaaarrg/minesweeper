@@ -1,3 +1,4 @@
+require "byebug"
 require_relative "0_tile"
 
 class Board
@@ -25,7 +26,36 @@ class Board
 
     attr_accessor :grid
 
-    
+    def [](pos)
+        row, col = pos
+        @grid[row][col]
+    end
+
+    def find_neighbors(tile_coords)
+        row, col = tile_coords
+        neighbors = []
+        (0..row + 1).each do |x|
+            next unless x >= row - 1
+            next if @grid[x].nil?
+            (0..col + 1).each do |y|
+                next unless y >= col - 1
+                next if x == row && y == col
+                neighbor = @grid[x][y]
+                neighbors <<  neighbor unless neighbor.nil?
+            end
+        end
+        neighbors
+    end
+
+    def set_tile_neighbors
+        @grid.each.with_index do |row, ri|
+            row.each.with_index do |tile, ci|
+                coords = [ri, ci]
+                neighbors = find_neighbors(coords)
+                tile.get_neighbors(neighbors)
+            end
+        end
+    end
 
     def render
         header = "  " + (0...@grid.size).to_a.join(" ")

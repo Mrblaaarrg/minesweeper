@@ -5,9 +5,10 @@ class Tile
         @is_bomb = is_bomb
         @is_flagged = false
         @revealed = false
+        @neighbors = []
     end
 
-    attr_reader :is_bomb
+    attr_reader :is_bomb, :neighbors
 
     def reveal
         if @is_flagged
@@ -25,8 +26,17 @@ class Tile
         @is_flagged = false
     end
 
-    def set_close_bombs(bomb_count)
-        @close_bombs = bomb_count
+    def get_neighbors(neighbors)
+        @neighbors += neighbors
+    end
+
+    def inspect
+        {
+            "id" => self.object_id,
+            "is_bomb" => @is_bomb,
+            "revealed" => @revealed,
+            # "neighbors" => @neighbors
+        }.inspect
     end
 
     def to_s
