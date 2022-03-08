@@ -10,7 +10,11 @@ class Tile
     attr_reader :is_bomb
 
     def reveal
-        @revealed = true
+        if @is_flagged
+            false
+        else
+            @revealed = true
+        end
     end
 
     def flag
