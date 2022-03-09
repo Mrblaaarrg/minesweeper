@@ -56,7 +56,7 @@ class Minesweeper
         type = nil
         valid = false
         until type && valid
-            puts "Reveal or Flag? (r/f):"
+            puts "Reveal, Flag, Save or Exit? (r/f/s/e):"
             print "> "
             type = gets.chomp
             valid = valid_move_type?(type)
@@ -69,7 +69,7 @@ class Minesweeper
     end
 
     def valid_move_type?(type)
-        ["r","f"].include?(type.downcase)
+        ["r","f","s","e"].include?(type.downcase)
     end
 
     def play_turn
@@ -77,12 +77,18 @@ class Minesweeper
         self.board.render
 
         move_type = self.get_move_type
-        pos = self.get_pos
 
-        if move_type == "f"
+        case move_type
+        when "f"
+            pos = self.get_pos
             self.board.flag_tile(pos)
-        else
+        when "r"
+            pos = self.get_pos
             self.board.chain_reveal_tile(pos)
+        when "s"
+            self.save_game
+        when "e"
+            @exit_game = true
         end
         system("clear")
         self.board.render
@@ -97,27 +103,24 @@ class Minesweeper
     end
 
     def game_over?
-        self.lose? || self.win?
+        @exit_game || self.lose? || self.win?
     end
 
     def play_game
         until self.game_over?
             self.play_turn
-            self.save_game if self.save_game?
         end
-        if self.lose?
+        if @exit_game
+            puts "\nGoodbye!".green.bold.blink
+            puts
+            @exit_game = false
+        elsif self.lose?
             puts "\nGAME OVER, YOU LOSE!".red.bold.blink
             puts
         else
             puts "\nVICTORY!".light_cyan.bold.blink
             puts
         end
-    end
-
-    def save_game?
-    puts "Do you want to save your game? (y/n):"
-    print "> "
-    gets.chomp.downcase == "y"
     end
 
     def save_game
