@@ -129,6 +129,17 @@ class Minesweeper
         save_name = gets.chomp
         File.open("./saves/#{save_name}.yml", "w") { |file| file.write self.to_yaml }
         puts "Game successfully saved"
+        sleep(1)
+    end
+
+    def self.load_game
+        puts "Please enter savefile's name:"
+        print "> "
+        savefile = gets.chomp
+        game = YAML.load(File.read("./saves/#{savefile}.yml"))
+        puts "Game successfully loaded"
+        sleep(1)
+        game
     end
 end
 
@@ -137,10 +148,7 @@ if __FILE__ == $PROGRAM_NAME
     print "> "
     load_game = gets.chomp.downcase == "l"
     if load_game
-        puts "Please enter savefile's name:"
-        print "> "
-        savefile = gets.chomp
-        game = YAML.load(File.read("./saves/#{savefile}.yml"))
+        game = Minesweeper.load_game
     else
         puts "Please enter the desired size for the board:"
         print "> "
