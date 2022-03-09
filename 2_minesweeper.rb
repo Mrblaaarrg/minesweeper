@@ -103,6 +103,7 @@ class Minesweeper
     def play_game
         until self.game_over?
             self.play_turn
+            self.save_game if self.save_game?
         end
         if self.lose?
             puts "\nGAME OVER, YOU LOSE!".red.bold.blink
@@ -114,7 +115,7 @@ class Minesweeper
     end
 
     def save_game?
-    puts "\nDo you want to save your game? (y/n):"
+    puts "Do you want to save your game? (y/n):"
     print "> "
     gets.chomp.downcase == "y"
     end
