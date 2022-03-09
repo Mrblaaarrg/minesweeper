@@ -64,6 +64,14 @@ class Board
         end
     end
 
+    def flag_tile(pos)
+        self[pos].flagged ? self[pos].unflag : self[pos].flag
+    end
+
+    def reveal_tile(pos)
+        self[pos].reveal
+    end
+
     def render
         header = "  " + (0...@grid.size).to_a.join(" ")
         counter_text = "Bombs remaining: #{@bombs_left}"

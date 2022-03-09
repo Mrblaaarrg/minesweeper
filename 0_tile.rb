@@ -8,7 +8,7 @@ class Tile
         @neighbors = []
     end
 
-    attr_reader :is_bomb, :neighbors
+    attr_reader :is_bomb, :flagged, :revealed, :neighbors
 
     def reveal
         if @flagged

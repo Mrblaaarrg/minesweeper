@@ -71,4 +71,19 @@ class Minesweeper
         ["r","f"].include?(type.downcase)
     end
 
+    def play_turn
+        system("clear")
+        self.board.render
+
+        move_type = self.get_move_type
+        pos = self.get_pos
+
+        if move_type == "f"
+            self.board.flag_tile(pos)
+        else
+            self.board.reveal_tile(pos)
+        end
+        system("clear")
+        self.board.render
+    end
 end
