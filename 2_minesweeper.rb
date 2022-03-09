@@ -114,7 +114,9 @@ class Minesweeper
     end
 
     def save_game?
-
+    puts "\nDo you want to save your game? (y/n):"
+    print "> "
+    gets.chomp.downcase == "y"
     end
 
     def save_game
