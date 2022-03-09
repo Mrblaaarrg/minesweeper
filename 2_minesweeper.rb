@@ -90,4 +90,8 @@ class Minesweeper
     def lose?
         @board.lose?
     end
+
+    def win?
+        @board.win?
+    end
 end
