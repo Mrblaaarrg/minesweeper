@@ -57,6 +57,15 @@ class Board
         end
     end
 
+    def set_tile_bomb_count
+        @grid.each.with_index do |row, ri|
+            row.each.with_index do |tile, ci|
+                coords = [ri, ci]
+                tile.get_bomb_count
+            end
+        end
+    end
+
     def render
         header = "  " + (0...@grid.size).to_a.join(" ")
         counter_text = "Bombs remaining: #{@bombs_left}"
@@ -70,6 +79,19 @@ class Board
             puts i.to_s + " " + row.join(" ")
         end
         true
+    end
+
+    def size
+        @grid.size
+    end
+
+    def cheat_reveal
+        @grid.each.with_index do |row, ri|
+            row.each.with_index do |tile, ci|
+                coords = [ri, ci]
+                tile.reveal
+            end
+        end
     end
 
 end

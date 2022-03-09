@@ -27,7 +27,11 @@ class Tile
     end
 
     def get_neighbors(neighbors)
-        @neighbors += neighbors
+        @neighbors = neighbors
+    end
+
+    def get_bomb_count
+        @close_bombs = @neighbors.count { |tile| tile.is_bomb }
     end
 
     def inspect
