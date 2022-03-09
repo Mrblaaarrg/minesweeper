@@ -50,9 +50,9 @@ class Tile
 
     def to_s
         if @flagged
-            "F".light_yellow
+            "F".light_magenta.bold
         elsif @revealed
-            @is_bomb ? "*".light_red : "#{@close_bombs || "~" }".light_yellow
+            @is_bomb ? "*".light_red.bold : "#{@close_bombs || "~" }".light_yellow
         else
             "-".light_cyan
         end
