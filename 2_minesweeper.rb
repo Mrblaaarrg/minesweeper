@@ -86,4 +86,8 @@ class Minesweeper
         system("clear")
         self.board.render
     end
+
+    def lose?
+        @board.lose?
+    end
 end

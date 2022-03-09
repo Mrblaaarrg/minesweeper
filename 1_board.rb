@@ -76,6 +76,19 @@ class Board
         self[pos].chain_reveal
     end
 
+    def lose?
+        @grid
+            .flatten
+            .any? { |tile| tile.revealed && tile.is_bomb }
+    end
+
+    def win?
+        @grid
+            .flatten
+            .select { |tile| !tile.is_bomb }
+            .all? { |tile| tile.revealed }
+    end
+
     def render
         header = "  " + (0...@grid.size).to_a.join(" ")
         counter_text = "Bombs remaining: #{@bombs_left}"
