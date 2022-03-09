@@ -3,7 +3,7 @@ require "colorize"
 class Tile
     def initialize(is_bomb = false)
         @is_bomb = is_bomb
-        @is_flagged = false
+        @flagged = false
         @revealed = false
         @neighbors = []
     end
@@ -11,7 +11,7 @@ class Tile
     attr_reader :is_bomb, :neighbors
 
     def reveal
-        if @is_flagged
+        if @flagged
             false
         else
             @revealed = true
@@ -19,11 +19,15 @@ class Tile
     end
 
     def flag
-        @is_flagged = true
+        if @revealed
+            false
+        else
+            @flagged = true
+        end
     end
 
     def unflag
-        @is_flagged = false
+        @flagged = false
     end
 
     def get_neighbors(neighbors)
@@ -39,12 +43,15 @@ class Tile
             "id" => self.object_id,
             "is_bomb" => @is_bomb,
             "revealed" => @revealed,
+            "flagged" => @flagged
             # "neighbors" => @neighbors
         }.inspect
     end
 
     def to_s
-        if @revealed
+        if @flagged
+            "F".light_yellow
+        elsif @revealed
             @is_bomb ? "*".light_red : "#{@close_bombs || "~" }".light_yellow
         else
             "-".light_cyan
