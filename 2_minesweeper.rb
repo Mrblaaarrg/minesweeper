@@ -50,4 +50,25 @@ class Minesweeper
         pos.length == 2 &&
         pos.all? { |x| x.between?(0, @board.size - 1) }
     end
+
+    def get_move_type
+        type = nil
+        valid = false
+        until type && valid
+            puts "Reveal or Flag? (r/f):"
+            print "> "
+            type = gets.chomp
+            valid = valid_move_type?(type)
+            unless valid
+                puts "Invalid move type, please try again."
+                puts ""
+            end
+        end
+        type
+    end
+
+    def valid_move_type?(type)
+        ["r","f"].include?(type.downcase)
+    end
+
 end
