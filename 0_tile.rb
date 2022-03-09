@@ -18,6 +18,16 @@ class Tile
         end
     end
 
+    def chain_reveal
+        if @is_bomb || @revealed || @close_bombs > 0
+            self.reveal
+            return true
+        end
+        self.reveal
+        @neighbors.each { |neighbor| neighbor.chain_reveal }
+        true
+    end
+
     def flag
         if @revealed
             false
@@ -43,8 +53,8 @@ class Tile
             "id" => self.object_id,
             "is_bomb" => @is_bomb,
             "revealed" => @revealed,
-            "flagged" => @flagged
-            # "neighbors" => @neighbors
+            "flagged" => @flagged,
+            "close_bombs" => @close_bombs
         }.inspect
     end
 

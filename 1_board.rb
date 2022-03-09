@@ -72,6 +72,10 @@ class Board
         self[pos].reveal
     end
 
+    def chain_reveal_tile(pos)
+        self[pos].chain_reveal
+    end
+
     def render
         header = "  " + (0...@grid.size).to_a.join(" ")
         counter_text = "Bombs remaining: #{@bombs_left}"

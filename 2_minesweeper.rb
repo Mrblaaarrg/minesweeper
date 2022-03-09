@@ -81,7 +81,7 @@ class Minesweeper
         if move_type == "f"
             self.board.flag_tile(pos)
         else
-            self.board.reveal_tile(pos)
+            self.board.chain_reveal_tile(pos)
         end
         system("clear")
         self.board.render
