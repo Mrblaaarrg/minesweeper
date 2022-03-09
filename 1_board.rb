@@ -24,8 +24,6 @@ class Board
         @bombs_left = bomb_number
     end
 
-    attr_accessor :grid
-
     def [](pos)
         row, col = pos
         @grid[row][col]
