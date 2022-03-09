@@ -1,4 +1,4 @@
-require "byebug"
+require "colorize"
 require_relative "1_board"
 
 class Minesweeper
@@ -98,4 +98,28 @@ class Minesweeper
     def game_over?
         self.lose? || self.win?
     end
+
+    def play_game
+        until self.game_over?
+            self.play_turn
+        end
+        if self.lose?
+            puts "\nGAME OVER, YOU LOSE!".red.bold.blink
+            puts
+        else
+            puts "\nVICTORY!".light_cyan.bold.blink
+            puts
+        end
+    end
+end
+
+if __FILE__ == $PROGRAM_NAME
+    puts "Please enter the desired size for the board:"
+    print "> "
+    board_size = gets.chomp.to_i
+    puts "Please enter the desired number of bombs:"
+    print "> "
+    bomb_number = gets.chomp.to_i
+    game = Minesweeper.new_game(board_size, bomb_number)
+    game.play_game
 end

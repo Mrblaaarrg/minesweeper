@@ -91,7 +91,7 @@ class Board
 
     def render
         header = "  " + (0...@grid.size).to_a.join(" ")
-        counter_text = "Bombs remaining: #{@bombs_left}"
+        counter_text = "\nBombs: #{@bombs_left}"
         # Bomb counter
         padding = (header.length - counter_text.length) / 2
         puts " ".ljust(padding, " ") + counter_text
