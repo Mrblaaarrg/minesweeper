@@ -1,0 +1,184 @@
+--- !ruby/object:Minesweeper
+board: !ruby/object:Board
+  grid:
+  - - &1 !ruby/object:Tile
+      is_bomb: false
+      flagged: false
+      revealed: true
+      neighbors:
+      - &2 !ruby/object:Tile
+        is_bomb: false
+        flagged: false
+        revealed: false
+        neighbors:
+        - *1
+        - &3 !ruby/object:Tile
+          is_bomb: true
+          flagged: false
+          revealed: false
+          neighbors:
+          - *2
+          - &4 !ruby/object:Tile
+            is_bomb: false
+            flagged: false
+            revealed: false
+            neighbors:
+            - *3
+            - &7 !ruby/object:Tile
+              is_bomb: false
+              flagged: false
+              revealed: false
+              neighbors:
+              - *2
+              - *3
+              - *4
+              - &5 !ruby/object:Tile
+                is_bomb: true
+                flagged: false
+                revealed: false
+                neighbors:
+                - *1
+                - *2
+                - *3
+                - &6 !ruby/object:Tile
+                  is_bomb: true
+                  flagged: false
+                  revealed: false
+                  neighbors:
+                  - *1
+                  - *2
+                  - *5
+                  - &8 !ruby/object:Tile
+                    is_bomb: false
+                    flagged: false
+                    revealed: false
+                    neighbors:
+                    - *6
+                    - *5
+                    - &11 !ruby/object:Tile
+                      is_bomb: false
+                      flagged: false
+                      revealed: false
+                      neighbors:
+                      - *6
+                      - *5
+                      - *7
+                      - *8
+                      - &9 !ruby/object:Tile
+                        is_bomb: false
+                        flagged: false
+                        revealed: false
+                        neighbors:
+                        - *5
+                        - *7
+                        - &10 !ruby/object:Tile
+                          is_bomb: false
+                          flagged: false
+                          revealed: false
+                          neighbors:
+                          - *3
+                          - *4
+                          - *7
+                          - *9
+                          - &12 !ruby/object:Tile
+                            is_bomb: false
+                            flagged: false
+                            revealed: false
+                            neighbors:
+                            - *7
+                            - *10
+                            - *9
+                            - &14 !ruby/object:Tile
+                              is_bomb: false
+                              flagged: false
+                              revealed: false
+                              neighbors:
+                              - *11
+                              - *9
+                              - *12
+                              - &13 !ruby/object:Tile
+                                is_bomb: false
+                                flagged: false
+                                revealed: false
+                                neighbors:
+                                - *8
+                                - *11
+                                - *9
+                                - &16 !ruby/object:Tile
+                                  is_bomb: false
+                                  flagged: false
+                                  revealed: false
+                                  neighbors:
+                                  - *8
+                                  - *11
+                                  - *13
+                                  close_bombs: 0
+                                - *14
+                                close_bombs: 0
+                              - &15 !ruby/object:Tile
+                                is_bomb: true
+                                flagged: false
+                                revealed: true
+                                neighbors:
+                                - *9
+                                - *12
+                                - *14
+                                close_bombs: 0
+                              close_bombs: 1
+                            - *15
+                            close_bombs: 1
+                          close_bombs: 1
+                        - *11
+                        - *12
+                        - *13
+                        - *14
+                        - *15
+                        close_bombs: 2
+                      - *16
+                      - *13
+                      - *14
+                      close_bombs: 2
+                    - *16
+                    - *13
+                    close_bombs: 2
+                  - *11
+                  close_bombs: 1
+                - *7
+                - *8
+                - *11
+                - *9
+                close_bombs: 2
+              - *10
+              - *11
+              - *9
+              - *12
+              close_bombs: 2
+            - *10
+            close_bombs: 1
+          - *5
+          - *7
+          - *10
+          close_bombs: 1
+        - *6
+        - *5
+        - *7
+        close_bombs: 3
+      - *6
+      - *5
+      close_bombs: 2
+    - *2
+    - *3
+    - *4
+  - - *6
+    - *5
+    - *7
+    - *10
+  - - *8
+    - *11
+    - *9
+    - *12
+  - - *16
+    - *13
+    - *14
+    - *15
+  bombs_left: 4

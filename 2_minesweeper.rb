@@ -112,6 +112,18 @@ class Minesweeper
             puts
         end
     end
+
+    def save_game?
+
+    end
+
+    def save_game
+        puts "Enter the name for the savefile (letters and underscores only):"
+        print "> "
+        save_name = gets.chomp
+        File.open("./saves/#{save_name}.yml", "w") { |file| file.write self.to_yaml }
+        puts "Game successfully saved"
+    end
 end
 
 if __FILE__ == $PROGRAM_NAME
