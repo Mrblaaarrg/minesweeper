@@ -1,3 +1,4 @@
+require "yaml"
 require "colorize"
 require_relative "1_board"
 
@@ -114,12 +115,22 @@ class Minesweeper
 end
 
 if __FILE__ == $PROGRAM_NAME
-    puts "Please enter the desired size for the board:"
+    puts "\nStart a new game or load a save? (n/l):"
     print "> "
-    board_size = gets.chomp.to_i
-    puts "Please enter the desired number of bombs:"
-    print "> "
-    bomb_number = gets.chomp.to_i
-    game = Minesweeper.new_game(board_size, bomb_number)
+    load_game = gets.chomp.downcase == "l"
+    if load_game
+        puts "Please enter savefile's name:"
+        print "> "
+        savefile = gets.chomp
+        game = YAML.load(File.read("./saves/#{savefile}.yml"))
+    else
+        puts "Please enter the desired size for the board:"
+        print "> "
+        board_size = gets.chomp.to_i
+        puts "Please enter the desired number of bombs:"
+        print "> "
+        bomb_number = gets.chomp.to_i
+        game = Minesweeper.new_game(board_size, bomb_number)
+    end
     game.play_game
 end
