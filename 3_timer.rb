@@ -1,8 +1,9 @@
+require "colorize"
+
 class Timer
     def initialize
         @start = Time.new
         @finish = nil
-        @seconds_passed = 0
         @duration = nil
     end
 
@@ -14,7 +15,12 @@ class Timer
         @duration = (@finish - @start).round
     end
 
+    def timer_lap
+        self.end_timer
+        self.timer_length
+    end
+
     def render
-        puts @seconds_passed
+        puts "\nPlayed for #{@duration} seconds".light_white.blink
     end
 end

@@ -1,6 +1,7 @@
 require "yaml"
 require "colorize"
 require_relative "1_board"
+require_relative "3_timer"
 
 class Minesweeper
     def self.new_game(board_size, bomb_number)
@@ -107,17 +108,22 @@ class Minesweeper
     end
 
     def play_game
+        timer = Timer.new
         until self.game_over?
             self.play_turn
         end
+        timer.timer_lap
         if @exit_game
+            timer.render
             puts "\nGoodbye!".green.bold.blink
             puts
             @exit_game = false
         elsif self.lose?
+            timer.render
             puts "\nGAME OVER, YOU LOSE!".red.bold.blink
             puts
         else
+            timer.render
             puts "\nVICTORY!".light_cyan.bold.blink
             puts
         end
